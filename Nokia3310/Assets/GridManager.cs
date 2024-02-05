@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class GridColumn
+{
+    public GameObject[] columnObjects = new GameObject[3];
+}
+
 public class GridManager : MonoBehaviour
 {
-    public GameObject[,] grid = new GameObject[3, 3]; // Matrice per la griglia 3x3
+    [SerializeField] public GridColumn[] columns = new GridColumn[3]; // Array di colonne per la griglia 3x3
     private int[,] state = new int[3, 3]; // Stati degli slot
 
     void Update()
@@ -48,8 +54,8 @@ public class GridManager : MonoBehaviour
     // Aggiorna gli oggetti sulla base dello stato dello slot
     void UpdateObjects(int row, int col)
     {
-        GameObject obj1 = grid[row, col].transform.GetChild(0).gameObject;
-        GameObject obj2 = grid[row, col].transform.GetChild(1).gameObject;
+        GameObject obj1 = columns[col].columnObjects[row].transform.GetChild(0).gameObject;
+        GameObject obj2 = columns[col].columnObjects[row].transform.GetChild(1).gameObject;
 
         switch (state[row, col])
         {
