@@ -16,34 +16,15 @@ public class AttivaDisattivaSpriteRenderer : MonoBehaviour
 
     void Update()
     {
-        // Controlla lo stato di attivazione del GameObject possessore dello script
-        if (gameObject.activeSelf)
+        // Se lo sprite renderer dell'oggetto corrente è attivo, disattiva lo sprite renderer dell'oggetto esterno
+        if (spriteRendererOggettoCorrente.enabled)
         {
-            // Se l'oggetto possessore dello script è attivo, disattiva il suo sprite renderer
-            if (spriteRendererOggettoCorrente.enabled)
-            {
-                spriteRendererOggettoCorrente.enabled = false;
-            }
-
-            // Controlla se lo sprite renderer dell'oggetto esterno è disattivo e in tal caso attivalo
-            if (!spriteRendererOggettoEsterno.enabled)
-            {
-                spriteRendererOggettoEsterno.enabled = true;
-            }
+            spriteRendererOggettoEsterno.enabled = false;
         }
-        else
+        // Se lo sprite renderer dell'oggetto esterno è attivo, disattiva lo sprite renderer dell'oggetto corrente
+        else if (spriteRendererOggettoEsterno.enabled)
         {
-            // Se l'oggetto possessore dello script è disattivo, attiva il suo sprite renderer
-            if (!spriteRendererOggettoCorrente.enabled)
-            {
-                spriteRendererOggettoCorrente.enabled = true;
-            }
-
-            // Controlla se lo sprite renderer dell'oggetto esterno è attivo e in tal caso disattivalo
-            if (spriteRendererOggettoEsterno.enabled)
-            {
-                spriteRendererOggettoEsterno.enabled = false;
-            }
+            spriteRendererOggettoCorrente.enabled = false;
         }
     }
 }
