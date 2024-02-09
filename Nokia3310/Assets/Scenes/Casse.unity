@@ -668,14 +668,13 @@ GameObject:
   m_Component:
   - component: {fileID: 224491700}
   - component: {fileID: 224491702}
-  - component: {fileID: 224491703}
   m_Layer: 5
   m_Name: ChiusoSX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &224491700
 RectTransform:
   m_ObjectHideFlags: 0
@@ -702,7 +701,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224491699}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -747,20 +746,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &224491703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224491699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be34674580a4a7c4a8a2a60c72338f49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRendererOggettoCorrente: {fileID: 224491702}
-  spriteRendererOggettoEsterno: {fileID: 281275397}
 --- !u!1 &230560403
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,14 +756,13 @@ GameObject:
   m_Component:
   - component: {fileID: 230560404}
   - component: {fileID: 230560406}
-  - component: {fileID: 230560407}
   m_Layer: 5
   m_Name: ChiusoSopra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &230560404
 RectTransform:
   m_ObjectHideFlags: 0
@@ -805,7 +789,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230560403}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -850,20 +834,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &230560407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 230560403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be34674580a4a7c4a8a2a60c72338f49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRendererOggettoCorrente: {fileID: 230560406}
-  spriteRendererOggettoEsterno: {fileID: 553228288}
 --- !u!1 &237608398
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,7 +967,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281275395}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1054,8 +1024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be34674580a4a7c4a8a2a60c72338f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRendererOggettoCorrente: {fileID: 281275397}
-  spriteRendererOggettoEsterno: {fileID: 58654785}
+  oggettoDaControllare: {fileID: 224491699}
 --- !u!1 &309802860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,7 +1280,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553228286}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1368,8 +1337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be34674580a4a7c4a8a2a60c72338f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRendererOggettoCorrente: {fileID: 553228288}
-  spriteRendererOggettoEsterno: {fileID: 165055739}
+  oggettoDaControllare: {fileID: 230560403}
 --- !u!1 &657354861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1502,7 +1470,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 659930834}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1559,8 +1527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be34674580a4a7c4a8a2a60c72338f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRendererOggettoCorrente: {fileID: 659930836}
-  spriteRendererOggettoEsterno: {fileID: 687472081}
+  oggettoDaControllare: {fileID: 1693714986}
 --- !u!1 &687472079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,13 +1897,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 948149463}
+  - component: {fileID: 948149464}
   m_Layer: 5
   m_Name: LatiChiusura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &948149463
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1960,6 +1928,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 4}
   m_SizeDelta: {x: 660, y: 440}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &948149464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948149462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9343fbf4f8008f34b80c914e87c397c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oggettoDaAttivareDisattivare: {fileID: 1431128133}
 --- !u!1 &956281187
 GameObject:
   m_ObjectHideFlags: 0
@@ -2531,16 +2512,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8870554a9017d46958ef4c40a5a71c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderersToActivateByKeys:
-  - {fileID: 224491702}
-  - {fileID: 1693714989}
-  - {fileID: 230560406}
-  - {fileID: 1852649593}
+  objectsToActivateByKeys:
+  - {fileID: 224491699}
+  - {fileID: 1693714986}
+  - {fileID: 230560403}
+  - {fileID: 1852649590}
   objectsToActivateOnClosing:
-  - {fileID: 659930834}
-  - {fileID: 553228286}
-  - {fileID: 1791287694}
-  - {fileID: 281275395}
+  - {fileID: 948149462}
   activationKeys: 04010000060100000801000002010000
   delayToDeactivate: 0.6
   orderCheckObject: {fileID: 1105697375}
@@ -2815,14 +2793,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1693714987}
   - component: {fileID: 1693714989}
-  - component: {fileID: 1693714990}
   m_Layer: 5
   m_Name: ChiusoDX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1693714987
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2849,7 +2826,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693714986}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -2894,20 +2871,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1693714990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693714986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be34674580a4a7c4a8a2a60c72338f49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRendererOggettoCorrente: {fileID: 1693714989}
-  spriteRendererOggettoEsterno: {fileID: 659930836}
 --- !u!1 &1702670799
 GameObject:
   m_ObjectHideFlags: 0
@@ -3072,7 +3035,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 25299e89db954704e8411e70189498c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3217,7 +3180,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791287694}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -3274,8 +3237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be34674580a4a7c4a8a2a60c72338f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRendererOggettoCorrente: {fileID: 1791287696}
-  spriteRendererOggettoEsterno: {fileID: 1702670801}
+  oggettoDaControllare: {fileID: 1852649590}
 --- !u!1 &1802257657
 GameObject:
   m_ObjectHideFlags: 0
@@ -3463,14 +3425,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1852649591}
   - component: {fileID: 1852649593}
-  - component: {fileID: 1852649594}
   m_Layer: 5
   m_Name: ChiusoSotto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1852649591
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3497,7 +3458,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852649590}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -3542,20 +3503,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1852649594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852649590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be34674580a4a7c4a8a2a60c72338f49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRendererOggettoCorrente: {fileID: 1852649593}
-  spriteRendererOggettoEsterno: {fileID: 1791287696}
 --- !u!1 &1882158114
 GameObject:
   m_ObjectHideFlags: 0

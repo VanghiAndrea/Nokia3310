@@ -2,29 +2,34 @@ using UnityEngine;
 
 public class AttivaDisattivaSpriteRenderer : MonoBehaviour
 {
-    public SpriteRenderer spriteRendererOggettoCorrente;
-    public SpriteRenderer spriteRendererOggettoEsterno;
+    public GameObject oggettoDaControllare;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        // Assicurati che i sprite renderers siano stati assegnati
-        if (spriteRendererOggettoCorrente == null || spriteRendererOggettoEsterno == null)
+        spriteRenderer = GetComponent<SpriteRenderer>(); // Ottieni il riferimento al proprio SpriteRenderer
+        if (spriteRenderer == null)
         {
-            Debug.LogError("Uno o entrambi gli sprite renderer non sono stati assegnati.");
+            Debug.LogError("Lo SpriteRenderer non è stato trovato sull'oggetto corrente.");
+        }
+
+        if (oggettoDaControllare == null)
+        {
+            Debug.LogError("L'oggetto da controllare non è stato assegnato.");
         }
     }
 
     void Update()
     {
-        // Se lo sprite renderer dell'oggetto corrente è attivo, disattiva lo sprite renderer dell'oggetto esterno
-        if (spriteRendererOggettoCorrente.enabled)
+        if (oggettoDaControllare.activeSelf)
         {
-            spriteRendererOggettoEsterno.enabled = false;
+            // Disattiva lo sprite renderer dell'oggetto possessore dello script
+            spriteRenderer.enabled = false;
         }
-        // Se lo sprite renderer dell'oggetto esterno è attivo, disattiva lo sprite renderer dell'oggetto corrente
-        else if (spriteRendererOggettoEsterno.enabled)
+        else
         {
-            spriteRendererOggettoCorrente.enabled = false;
+            // Altrimenti, se l'oggetto da controllare è disattivo, attiva lo sprite renderer dell'oggetto possessore dello script
+            spriteRenderer.enabled = true;
         }
     }
 }
