@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    // Variabile booleana per controllare se tutti gli slot sono "Occupato"
     private bool allOccupied = false;
-
-    // Variabile booleana per controllare se si sta chiudendo
     private bool closing = false;
     public bool Closing
     {
@@ -28,7 +25,6 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    // Variabile booleana per controllare se l'ordine è corretto
     private bool rightOrder = false;
     public bool RightOrder
     {
@@ -40,59 +36,27 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    // Variabile intera per il punteggio
     private int score = 0;
 
-    // GameObject da attivare premendo i tasti
     public List<GameObject> objectsToActivateByKeys = new List<GameObject>();
-
-    // GameObject da attivare quando "Closing" è vera
     public List<GameObject> objectsToActivateOnClosing = new List<GameObject>();
-
-    // Tasti corrispondenti per attivare gli oggetti
     public KeyCode[] activationKeys;
-
-    // Delay per disattivare gli oggetti
     public float delayToDeactivate = 0.6f;
-
-    // GameObject contenente gli oggetti di interesse per il controllo dell'ordine
     public GameObject orderCheckObject;
 
     private List<KeyCode> pressedKeys = new List<KeyCode>();
 
     void Update()
     {
-        // Controlla se tutti gli slot sono "Occupato"
         allOccupied = CheckAllOccupied();
 
-        // Controlla se si sta chiudendo
         if (allOccupied)
         {
             Closing = true;
         }
 
-        // Controlla la sequenza solo se si sta chiudendo
         if (Closing == true)
         {
-            // Registra i tasti premuti
-            foreach (KeyCode key in activationKeys)
-            {
-                if (Input.GetKeyDown(key) && !pressedKeys.Contains(key))
-                {
-                    pressedKeys.Add(key);
-                }
-            }
-
-            // Controlla se sono stati premuti tutti i tasti almeno una volta
-            if (pressedKeys.Count == activationKeys.Length)
-            {
-                if (CheckAllObjectsActivated())
-                {
-                    CheckOrderOfActivation();
-                }
-            }
-
-            // Attiva gli oggetti premendo i tasti solo se si sta chiudendo
             for (int i = 0; i < activationKeys.Length; i++)
             {
                 if (Input.GetKeyDown(activationKeys[i]))
@@ -101,13 +65,17 @@ public class ScoreManager : MonoBehaviour
                     {
                         objectsToActivateByKeys[i].SetActive(true);
                         objectsToActivateByKeys[i].transform.SetAsLastSibling();
+                        SpriteRenderer renderer = objectsToActivateByKeys[i].GetComponent<SpriteRenderer>();
+                        if (renderer != null)
+                        {
+                            renderer.sortingOrder = GetHighestSortingOrder() + 1;
+                        }
                     }
                 }
             }
         }
         else
         {
-            // Disattiva gli oggetti premendo i tasti solo se la chiusura è già avvenuta
             for (int i = 0; i < activationKeys.Length; i++)
             {
                 if (Input.GetKeyDown(activationKeys[i]))
@@ -118,7 +86,6 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    // Metodo per controllare se tutti gli slot sono "Occupato"
     private bool CheckAllOccupied()
     {
         foreach (Slot slot in FindObjectOfType<SlotManager>().slots)
@@ -131,7 +98,6 @@ public class ScoreManager : MonoBehaviour
         return true;
     }
 
-    // Metodo per attivare gli oggetti quando "Closing" è vera
     private void ActivateClosingObjects()
     {
         foreach (GameObject obj in objectsToActivateOnClosing)
@@ -140,7 +106,6 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    // Metodo per disattivare gli oggetti premendo i tasti
     private void DeactivateObjectsByKeys()
     {
         foreach (GameObject obj in objectsToActivateByKeys)
@@ -149,7 +114,6 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    // Metodo per controllare se tutti gli oggetti sono stati attivati
     private bool CheckAllObjectsActivated()
     {
         foreach (GameObject obj in objectsToActivateByKeys)
@@ -162,7 +126,6 @@ public class ScoreManager : MonoBehaviour
         return true;
     }
 
-    // Metodo per controllare l'ordine della sequenza
     private void CheckOrderOfActivation()
     {
         Transform firstChild = orderCheckObject.transform.GetChild(0);
@@ -180,13 +143,11 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    // Metodo per disattivare gli oggetti con un ritardo
     private void DeactivateObjectsByKeysWithDelay(float delay)
     {
         StartCoroutine(DeactivateObjectsCoroutine(delay));
     }
 
-    // Coroutine per disattivare gli oggetti con un ritardo
     private IEnumerator DeactivateObjectsCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -197,9 +158,25 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    // Metodo per reimpostare la storia di attivazione dei tasti
     private void ResetActivationHistory()
     {
         pressedKeys.Clear();
+    }
+
+    private int GetHighestSortingOrder()
+    {
+        int highestSortingOrder = int.MinValue;
+        foreach (GameObject obj in objectsToActivateByKeys)
+        {
+            if (obj.activeSelf)
+            {
+                SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
+                if (renderer != null && renderer.sortingOrder > highestSortingOrder)
+                {
+                    highestSortingOrder = renderer.sortingOrder;
+                }
+            }
+        }
+        return highestSortingOrder;
     }
 }
