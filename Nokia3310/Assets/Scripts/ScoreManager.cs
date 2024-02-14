@@ -33,6 +33,10 @@ public class ScoreManager : MonoBehaviour
         {
             rightOrder = value;
             Debug.Log("Right order state changed to: " + value);
+            if (value)
+            {
+                DisableObjectsToActivateByKeys();
+            }
         }
     }
 
@@ -43,8 +47,11 @@ public class ScoreManager : MonoBehaviour
     public KeyCode[] activationKeys;
     public float delayToDeactivate = 0.6f;
     public GameObject orderCheckObject;
+    public bool VaiAnimazione { get; private set; } = false;
 
     private List<KeyCode> pressedKeys = new List<KeyCode>();
+    public List<GameObject> scotchObjects = new List<GameObject>();
+    private List<GameObject> activatedObjects = new List<GameObject>();
 
     void Update()
     {
@@ -55,13 +62,13 @@ public class ScoreManager : MonoBehaviour
             Closing = true;
         }
 
-        if (Closing == true)
+        if (Closing)
         {
             for (int i = 0; i < activationKeys.Length; i++)
             {
                 if (Input.GetKeyDown(activationKeys[i]))
                 {
-                    if (Closing)
+                    if (Closing && !activatedObjects.Contains(objectsToActivateByKeys[i]))
                     {
                         objectsToActivateByKeys[i].SetActive(true);
                         objectsToActivateByKeys[i].transform.SetAsLastSibling();
@@ -70,6 +77,7 @@ public class ScoreManager : MonoBehaviour
                         {
                             renderer.sortingOrder = GetHighestSortingOrder() + 1;
                         }
+                        activatedObjects.Add(objectsToActivateByKeys[i]);
                     }
                 }
             }
@@ -84,7 +92,30 @@ public class ScoreManager : MonoBehaviour
                 }
             }
         }
+
+        if (CheckAllObjectsActivated()) // Chiamare CheckOrderOfActivation solo se tutti gli oggetti sono attivati
+        {
+            CheckOrderOfActivation();
+        }
+
+        if (RightOrder)
+        {
+            if (Input.GetKeyDown(KeyCode.Keypad4) && (activatedObjects.Contains(scotchObjects[0]) || activatedObjects.Contains(scotchObjects[2])))
+            {
+                scotchObjects[0].SetActive(true);
+            }
+            else if (Input.GetKeyDown(KeyCode.Keypad5) && (activatedObjects.Contains(scotchObjects[0]) || activatedObjects.Contains(scotchObjects[2])))
+            {
+                scotchObjects[1].SetActive(true);
+            }
+            else if (Input.GetKeyDown(KeyCode.Keypad6) && (activatedObjects.Contains(scotchObjects[0]) || activatedObjects.Contains(scotchObjects[2])))
+            {
+                scotchObjects[2].SetActive(true);
+            }
+        }
     }
+
+
 
     private bool CheckAllOccupied()
     {
@@ -124,6 +155,14 @@ public class ScoreManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private void DisableObjectsToActivateByKeys()
+    {
+        foreach (GameObject obj in objectsToActivateByKeys)
+        {
+            obj.SetActive(false);
+        }
     }
 
     private void CheckOrderOfActivation()
