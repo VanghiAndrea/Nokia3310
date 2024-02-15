@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: "Assets/Scenes/Men\xF9Iniziale.unity"
     guid: 73062684362263243b82ec3f5279b28b
   - enabled: 1
+    path: Assets/Scenes/RotazioneCassetteP1.unity
+    guid: ea4d03b36f2d17947b72ee28c0629242
+  - enabled: 1
     path: Assets/Scenes/RotazioneCassetteP2.unity
     guid: 1eafc003385ad2b47a53de28f9bd825d
   - enabled: 1
