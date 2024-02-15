@@ -101,6 +101,7 @@ public class ScoreManager : MonoBehaviour
 
         if (RightOrder)
         {
+            // Attivazione degli scotch object solo se non siamo ancora completi
             if (!CiSiamo)
             {
                 if (Input.GetKeyDown(KeyCode.Keypad4) && (activatedObjects.Contains(scotchObjects[0]) || activatedObjects.Contains(scotchObjects[2])))
@@ -122,10 +123,7 @@ public class ScoreManager : MonoBehaviour
                 }
             }
         }
-
     }
-
-
 
     private bool CheckAllOccupied()
     {
@@ -181,20 +179,23 @@ public class ScoreManager : MonoBehaviour
         Transform secondChild = orderCheckObject.transform.GetChild(1);
 
         if ((firstChild == objectsToActivateByKeys[0].transform || secondChild == objectsToActivateByKeys[0].transform) &&
-         (firstChild == objectsToActivateByKeys[1].transform || secondChild == objectsToActivateByKeys[1].transform))
+            (firstChild == objectsToActivateByKeys[1].transform || secondChild == objectsToActivateByKeys[1].transform))
         {
             RightOrder = true;
+
+            // Riattiva gli objectsToActivateByKeys quando l'ordine è corretto
+            foreach (GameObject obj in objectsToActivateByKeys)
+            {
+                obj.SetActive(true);
+            }
         }
         else
         {
             // Se l'ordine non è corretto, disattiva temporaneamente gli oggetti
-            DeactivateObjectsWithDelay(delayToDeactivate);
+            StartCoroutine(DeactivateObjectsCoroutine(delayToDeactivate));
         }
     }
-    private void DeactivateObjectsWithDelay(float delay)
-    {
-        StartCoroutine(DeactivateObjectsCoroutine(delay));
-    }
+
     private IEnumerator DeactivateObjectsCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -202,26 +203,6 @@ public class ScoreManager : MonoBehaviour
         foreach (GameObject obj in objectsToActivateByKeys)
         {
             obj.SetActive(false);
-        }
-    }
-    private IEnumerator DeactivateObjectsWithDelayAndReactivate(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        foreach (GameObject obj in objectsToActivateByKeys)
-        {
-            obj.SetActive(false);
-        }
-
-        // Reattiva gli oggetti dopo il delay solo se RightOrder è ancora falso
-        if (!RightOrder)
-        {
-            yield return new WaitForSeconds(delay);
-
-            foreach (GameObject obj in objectsToActivateByKeys)
-            {
-                obj.SetActive(true);
-            }
         }
     }
 
