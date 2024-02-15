@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     private bool allOccupied = false;
     private bool closing = false;
+    public bool CiSiamo { get; private set; } = false;
     public bool Closing
     {
         get { return closing; }
@@ -100,19 +101,28 @@ public class ScoreManager : MonoBehaviour
 
         if (RightOrder)
         {
-            if (Input.GetKeyDown(KeyCode.Keypad4) && (activatedObjects.Contains(scotchObjects[0]) || activatedObjects.Contains(scotchObjects[2])))
+            if (!CiSiamo)
             {
-                scotchObjects[0].SetActive(true);
-            }
-            else if (Input.GetKeyDown(KeyCode.Keypad5) && (activatedObjects.Contains(scotchObjects[0]) || activatedObjects.Contains(scotchObjects[2])))
-            {
-                scotchObjects[1].SetActive(true);
-            }
-            else if (Input.GetKeyDown(KeyCode.Keypad6) && (activatedObjects.Contains(scotchObjects[0]) || activatedObjects.Contains(scotchObjects[2])))
-            {
-                scotchObjects[2].SetActive(true);
+                if (Input.GetKeyDown(KeyCode.Keypad4) && (activatedObjects.Contains(scotchObjects[0]) || activatedObjects.Contains(scotchObjects[2])))
+                {
+                    scotchObjects[0].SetActive(true);
+                }
+                else if (Input.GetKeyDown(KeyCode.Keypad5) && (activatedObjects.Contains(scotchObjects[0]) || activatedObjects.Contains(scotchObjects[2])))
+                {
+                    scotchObjects[1].SetActive(true);
+                }
+                else if (Input.GetKeyDown(KeyCode.Keypad6) && (activatedObjects.Contains(scotchObjects[0]) || activatedObjects.Contains(scotchObjects[2])))
+                {
+                    scotchObjects[2].SetActive(true);
+                }
+
+                if (scotchObjects[0].activeSelf && scotchObjects[1].activeSelf && scotchObjects[2].activeSelf)
+                {
+                    CiSiamo = true;
+                }
             }
         }
+
     }
 
 
@@ -171,22 +181,20 @@ public class ScoreManager : MonoBehaviour
         Transform secondChild = orderCheckObject.transform.GetChild(1);
 
         if ((firstChild == objectsToActivateByKeys[0].transform || secondChild == objectsToActivateByKeys[0].transform) &&
-            (firstChild == objectsToActivateByKeys[1].transform || secondChild == objectsToActivateByKeys[1].transform))
+         (firstChild == objectsToActivateByKeys[1].transform || secondChild == objectsToActivateByKeys[1].transform))
         {
             RightOrder = true;
         }
         else
         {
-            RightOrder = false;
-            DeactivateObjectsByKeysWithDelay(delayToDeactivate);
+            // Se l'ordine non è corretto, disattiva temporaneamente gli oggetti
+            DeactivateObjectsWithDelay(delayToDeactivate);
         }
     }
-
-    private void DeactivateObjectsByKeysWithDelay(float delay)
+    private void DeactivateObjectsWithDelay(float delay)
     {
         StartCoroutine(DeactivateObjectsCoroutine(delay));
     }
-
     private IEnumerator DeactivateObjectsCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -194,6 +202,26 @@ public class ScoreManager : MonoBehaviour
         foreach (GameObject obj in objectsToActivateByKeys)
         {
             obj.SetActive(false);
+        }
+    }
+    private IEnumerator DeactivateObjectsWithDelayAndReactivate(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        foreach (GameObject obj in objectsToActivateByKeys)
+        {
+            obj.SetActive(false);
+        }
+
+        // Reattiva gli oggetti dopo il delay solo se RightOrder è ancora falso
+        if (!RightOrder)
+        {
+            yield return new WaitForSeconds(delay);
+
+            foreach (GameObject obj in objectsToActivateByKeys)
+            {
+                obj.SetActive(true);
+            }
         }
     }
 
